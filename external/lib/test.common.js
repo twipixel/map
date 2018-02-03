@@ -17,7 +17,7 @@
     {
         var xhrObj = getXMLHttpRequest();
         xhrObj.open('GET', src, false);
-        xhrObj.send('');
+        xhrObj.send(null);
         if (xhrObj.status === 200) {
             return xhrObj.responseText;
         }
@@ -32,7 +32,7 @@
             var script = document.createElement('script');
             script.type = "text/javascript";
             script.text = text;
-            document.getElementsByTagName('head')[0].appendChild(script);
+            document.head.appendChild(script);
             return true;
         }
         return false;
@@ -46,7 +46,7 @@
             var script = document.createElement('script');
             script.type = "text/javascript";
             script.text = text;
-            document.getElementsByTagName('body')[0].appendChild(script);
+            document.body.appendChild(script);
             return true;
         }
         return false;
@@ -57,7 +57,7 @@
         var script = document.createElement("script");
         script.type = "text/javascript";
         script.src = src;
-        document.getElementsByTagName('body')[0].appendChild(script);
+        document.body.appendChild(script);
     }
 
     if (typeof exports === 'object' && typeof module !== 'undefined') {
