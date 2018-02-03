@@ -1,0 +1,40 @@
+{
+  "name": "map",
+  "version": "1.0.0",
+  "description": "",
+  "main": "map/pbf/index.html",
+  "scripts": {
+    "build": "webpack --build",
+    "dev": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twipixel/map.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-register": "^6.18.0",
+    "babel-runtime": "^6.20.0",
+    "bootstrap": "^3.3.7",
+    "browser-sync": "^2.18.5",
+    "browser-sync-webpack-plugin": "^1.1.3",
+    "copy-webpack-plugin": "^4.0.1",
+    "electron-prebuilt": "^1.4.5",
+    "eventemitter3": "^2.0.3",
+    "ismobilejs": "^0.4.1",
+    "jquery": "^3.1.1",
+    "path": "^0.12.7",
+    "raw-loader": "^0.5.1",
+    "remove-webpack-plugin": "^1.2.2",
+    "webpack": "^1.13.3",
+    "webpack-core": "^0.6.9",
+    "webpack-dev-server": "^1.16.2",
+    "write-file-webpack-plugin": "^3.4.2"
+  }
+}
