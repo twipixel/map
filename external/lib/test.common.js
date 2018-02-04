@@ -13,10 +13,10 @@
         return httpRequest;
     }
 
-    function getSyncScriptText(src)
+    function getScriptText(src, async = true)
     {
         var xhrObj = getXMLHttpRequest();
-        xhrObj.open('GET', src, false);
+        xhrObj.open('GET', src, async);
         xhrObj.send(null);
         if (xhrObj.status === 200) {
             return xhrObj.responseText;
@@ -26,7 +26,7 @@
 
     function addScriptToHeadSync(src)
     {
-        var text = getSyncScriptText(src);
+        var text = getScriptText(src, false);
 
         if (text !== null) {
             var script = document.createElement('script');
@@ -40,7 +40,7 @@
 
     function addScriptToBodySync(src)
     {
-        var text = getSyncScriptText(src);
+        var text = getScriptText(src, false);
 
         if (text !== null) {
             var script = document.createElement('script');
