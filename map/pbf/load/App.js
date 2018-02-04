@@ -1,6 +1,4 @@
 export default class App {
-
-
     constructor() {
         this.initialize();
         this.loadPbf();
@@ -8,12 +6,15 @@ export default class App {
     }
 
     initialize() {
-
+        const canvas = document.getElementById('map');
+        const ctx = canvas.getContext('2d');
+        console.log('canvas', canvas);
+        console.log('ctx', ctx);
     }
 
     loadPbf() {
         this.load(
-            'countries/0/0/0.pbf',
+            './../../../asset/countries/0/0/0.pbf',
             (xhttp) => {
                 const pbf = new Pbf(new Uint8Array(xhttp.response));
                 // const tile = new VectorTile(pbf);
@@ -73,7 +74,6 @@ export default class App {
                         }
                     }
                 );
-
                 console.log('data', data);
                 console.log('features', features);
             }
