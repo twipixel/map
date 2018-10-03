@@ -4,8 +4,8 @@
   "description": "",
   "main": "map/pbf/index.html",
   "scripts": {
-    "build": "webpack --build",
-    "dev": "webpack"
+    "start": "webpack",
+    "build": "webpack --build"
   },
   "repository": {
     "type": "git",
