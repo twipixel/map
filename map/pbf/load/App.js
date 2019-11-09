@@ -19,7 +19,17 @@ const urls = {
   poi_web: 'https://map.pstatic.net/nvb/wmts/poi_web/8fe6883e-5525-45f8-8f55-5e30bc4981f1/getTile/{x}/{y}/{z}/pbf',
   poi4osm: 'https://map.pstatic.net/nvbpc/wmts/osm_naver_poi/5653e757-9bf1-4a2e-b20f-86bb4c0b9912/getTile/{x}/{y}/{z}/pbf',
   cctv: 'https://map.pstatic.net/nvbpc/wmts/cctv/ab50b26c-842d-4be5-8b0c-46019f5e79a1/getTile/{x}/{y}/{z}/pbf',
-  ozone: 'https://map.pstatic.net/ozone/pbf/geojson/POI?x=27953&y=12711&z=15&name=osm_naver_poi&versionCode=5653e757-9bf1-4a2e-b20f-86bb4c0b9912&pixelRatio=2&imageType=sprite&language=ko&mapType=NORMAL&quality=normal'
+  ozone: 'https://map.pstatic.net/ozone/pbf/geojson/POI?' +
+    'x=' + xyz.x + '&' +
+    'y=' + xyz.y + ' &' +
+    'z=' + xyz.z + '&' +
+    'name=osm_naver_poi&' +
+    'versionCode=5653e757-9bf1-4a2e-b20f-86bb4c0b9912&' +
+    'pixelRatio=2&' +
+    'imageType=sprite&' +
+    'language=ko&' +
+    'mapType=NORMAL&' +
+    'quality=normal'
 };
 
 for (const prop in urls) {
@@ -28,10 +38,14 @@ for (const prop in urls) {
 
 export default class App {
   constructor() {
+    // this.testPbf(urls.bus, 'bus');
+    // this.testPbf(urls.cctv, 'cctv');
     this.testPbf(urls.poi_web, 'poi_web');
+    this.testPbf(urls.poi4osm, 'poi4osm');
+    this.testOzone(urls.ozone, 'ozone');
   }
 
-  loadBus() {
+  parse() {
     // const pbf = new Pbf(new Uint8Array(response));
     // const tile = new VectorTile(pbf);
     // const tile = new VectorTile(new ProtoBuf(buffer));
@@ -48,9 +62,30 @@ export default class App {
       const tile = new VectorTile(new ProtoBuf(buffer));
       console.timeEnd(getTimeLabel(`${timeLabel} pbf 파싱`));
       // console.log(stringify(tile, 2));
+      console.log(tile);
       console.time(getTimeLabel(`${timeLabel} 피쳐 생성`));
       const collection = this.getFeatures(tile);
       console.timeEnd(getTimeLabel(`${timeLabel} 피쳐 생성`));
+      console.log('features', collection.features);
+    });
+  }
+
+  testOzone(url, timeLabel) {
+    console.time(getTimeLabel(`${timeLabel} 로드`));
+    request({
+      url,
+      responseType: 'arraybuffer',
+    }).then(buffer => {
+      console.timeEnd(getTimeLabel(`${timeLabel} 로드`));
+      console.time(getTimeLabel(`${timeLabel} pbf 파싱 및 피쳐 생성`));
+
+      let collection = {
+        type: 'FeatureCollection',
+        features: []
+      };
+
+      collection = geobuf.decode(new ProtoBuf(buffer));
+      console.timeEnd(getTimeLabel(`${timeLabel} pbf 파싱 및 피쳐 생성`));
       console.log('features', collection.features);
     });
   }
@@ -67,6 +102,7 @@ export default class App {
       layers = [layers];
     }
 
+    console.log(`layers (${layers.length})`);
     layers.forEach((layerID) => {
       const layer = tile.layers[layerID];
 
