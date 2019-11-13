@@ -13,11 +13,13 @@ import { VectorTile } from '@mapbox/vector-tile';
  * https://map.naver.com/v5/?c=14149672.7378817,4491199.7219950,15,0,0,0,dh
  * 그리고 받고 파싱하는 비용 개산을 합니다.
  */
-const xyz = {x: 27953, y: 12711, z: 15};
+// const xyz = {x: 27953, y: 12711, z: 15};
+const xyz = {x: 27954, y: 12712, z: 15};
 const urls = {
   bus: 'https://map.pstatic.net/nvb/wmts/bus/d2e364c9-b75e-4fd7-8020-c4b26f82b9ce/getTile/{x}/{y}/{z}/pbf',
   poi_web: 'https://map.pstatic.net/nvb/wmts/poi_web/8fe6883e-5525-45f8-8f55-5e30bc4981f1/getTile/{x}/{y}/{z}/pbf',
   poi4osm: 'https://map.pstatic.net/nvbpc/wmts/osm_naver_poi/5653e757-9bf1-4a2e-b20f-86bb4c0b9912/getTile/{x}/{y}/{z}/pbf',
+  naver4osm: 'https://map.pstatic.net/nvbpc/wmts/osm_naver_data/getMetadata',
   cctv: 'https://map.pstatic.net/nvbpc/wmts/cctv/ab50b26c-842d-4be5-8b0c-46019f5e79a1/getTile/{x}/{y}/{z}/pbf',
   ozone: 'https://map.pstatic.net/ozone/pbf/geojson/POI?' +
     'x=' + xyz.x + '&' +
@@ -40,7 +42,8 @@ export default class App {
   constructor() {
     // this.testPbf(urls.bus, 'bus');
     // this.testPbf(urls.cctv, 'cctv');
-    this.testPbf(urls.poi_web, 'poi_web');
+    this.testPbf(urls.cctv, 'cctv');
+    this.testPbf(urls.poi_web, 'naver4osm');
     this.testPbf(urls.poi4osm, 'poi4osm');
     this.testOzone(urls.ozone, 'ozone');
   }
