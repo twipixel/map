@@ -66,8 +66,13 @@
                     </a>
                     <ul class="sub">
                         <li><a href="load/index.html" target="frame">Pbf Load</a></li>
-                        <li><a href="openlayers/index.html" target="frame">OpenLayers Basic</a></li>
                         <li><a href="filter/index.html" target="frame">Mapbox Feature Filter</a></li>
+                    </ul>
+                    <a href="javascript:" class="dcjq-parent active">
+                        <span>Map Basic</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="openlayers/index.html" target="frame">OpenLayers</a></li>
                     </ul>
                 </li>
 
@@ -177,7 +182,7 @@
         frame.name = 'frame';
         frame.frameBorder = 0;
         frame.scrolling = 'no';
-        frame.src = 'filer/index.html';
+        frame.src = './load/index.html';
         parent.appendChild(frame);
 
     }());
