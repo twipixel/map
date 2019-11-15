@@ -2,7 +2,7 @@ import isObject from '../validate/isobject'
 
 var MAX_DEPTH = 100;
 
-function expandedLog(item, depth){
+function expand(item, depth){
   depth = depth || 30;
 
   if (depth > MAX_DEPTH ) {
@@ -14,7 +14,7 @@ function expandedLog(item, depth){
     for (var prop in item) {
       console.log(prop, item[prop]);
       console.group(prop + ' : ' +(typeof item[prop]));
-      expandedLog(item[prop], depth + 1);
+      expand(item[prop], depth + 1);
       console.groupEnd();
     }
   } else {
@@ -27,6 +27,6 @@ function stringify(object, space) {
 }
 
 export {
-  expandedLog,
+  expand,
   stringify,
 } ;

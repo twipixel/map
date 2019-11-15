@@ -4,8 +4,8 @@ import Pbf from 'pbf';
 import ProtoBuf from 'pbf';
 import request from '../../../src/net/request';
 import template from '../../../src/string/template';
-import getTimeLabel from '../../../src/console/getTimeLabel';
-import { expandedLog, stringify } from '../../../src/console/expandedLog';
+import bold from '../../../src/console/bold';
+import { expand, stringify } from '../../../src/console/expand';
 import { VectorTile } from '@mapbox/vector-tile';
 
 /**
@@ -59,32 +59,32 @@ export default class App {
   }
 
   testPbf(url, timeLabel) {
-    console.time(getTimeLabel(`${timeLabel} 로드`));
+    console.time(bold(`${timeLabel} 로드`));
     request({
       url,
       responseType: 'arraybuffer',
     }).then(buffer => {
-      console.timeEnd(getTimeLabel(`${timeLabel} 로드`));
-      console.time(getTimeLabel(`${timeLabel} pbf 파싱`));
+      console.timeEnd(bold(`${timeLabel} 로드`));
+      console.time(bold(`${timeLabel} pbf 파싱`));
       const tile = new VectorTile(new ProtoBuf(buffer));
-      console.timeEnd(getTimeLabel(`${timeLabel} pbf 파싱`));
+      console.timeEnd(bold(`${timeLabel} pbf 파싱`));
       // console.log(stringify(tile, 2));
       console.log(tile);
-      console.time(getTimeLabel(`${timeLabel} 피쳐 생성`));
+      console.time(bold(`${timeLabel} 피쳐 생성`));
       const collection = this.getFeatures(tile);
-      console.timeEnd(getTimeLabel(`${timeLabel} 피쳐 생성`));
+      console.timeEnd(bold(`${timeLabel} 피쳐 생성`));
       console.log('features', collection.features);
     });
   }
 
   testOzone(url, timeLabel) {
-    console.time(getTimeLabel(`${timeLabel} 로드`));
+    console.time(bold(`${timeLabel} 로드`));
     request({
       url,
       responseType: 'arraybuffer',
     }).then(buffer => {
-      console.timeEnd(getTimeLabel(`${timeLabel} 로드`));
-      console.time(getTimeLabel(`${timeLabel} pbf 파싱 및 피쳐 생성`));
+      console.timeEnd(bold(`${timeLabel} 로드`));
+      console.time(bold(`${timeLabel} pbf 파싱 및 피쳐 생성`));
 
       let collection = {
         type: 'FeatureCollection',
@@ -92,7 +92,7 @@ export default class App {
       };
 
       collection = geobuf.decode(new ProtoBuf(buffer));
-      console.timeEnd(getTimeLabel(`${timeLabel} pbf 파싱 및 피쳐 생성`));
+      console.timeEnd(bold(`${timeLabel} pbf 파싱 및 피쳐 생성`));
       console.log('collection', collection);
       console.log('features', collection.features);
     });
