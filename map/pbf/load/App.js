@@ -14,7 +14,11 @@ import { VectorTile } from '@mapbox/vector-tile';
  * 그리고 받고 파싱하는 비용 개산을 합니다.
  */
 // const xyz = {x: 27953, y: 12711, z: 15};
-const xyz = {x: 27954, y: 12712, z: 15};
+// const xyz = {x: 27954, y: 12712, z: 15};
+// const xyz = {x: 27954, y: 12714, z: 15};
+// const xyz = {x: 27952, y: 12714, z: 15};
+// 그린팩토리
+const xyz = {x: 27953, y: 12713, z: 15};
 const urls = {
   bus: 'https://map.pstatic.net/nvb/wmts/bus/d2e364c9-b75e-4fd7-8020-c4b26f82b9ce/getTile/{x}/{y}/{z}/pbf',
   poi_web: 'https://map.pstatic.net/nvb/wmts/poi_web/8fe6883e-5525-45f8-8f55-5e30bc4981f1/getTile/{x}/{y}/{z}/pbf',
@@ -120,7 +124,8 @@ export default class App {
           feature.properties.layer = layerID;
         }
 
-        console.log('feature', feature);
+        // console.log('feature', feature);
+        console.log('feature', JSON.stringify(feature, null, 2));
         collection.features.push(feature);
       }
     });
