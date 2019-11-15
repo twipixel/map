@@ -93,6 +93,7 @@ export default class App {
 
       collection = geobuf.decode(new ProtoBuf(buffer));
       console.timeEnd(getTimeLabel(`${timeLabel} pbf 파싱 및 피쳐 생성`));
+      console.log('collection', collection);
       console.log('features', collection.features);
     });
   }
@@ -124,8 +125,8 @@ export default class App {
           feature.properties.layer = layerID;
         }
 
-        // console.log('feature', feature);
-        console.log('feature', JSON.stringify(feature, null, 2));
+        console.log('feature', feature);
+        // console.log('feature', JSON.stringify(feature, null, 2));
         collection.features.push(feature);
       }
     });
